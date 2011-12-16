@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services-config> 
+    <services> 
+    
+        <service id="amfphp-flashremoting-local" class="flex.messaging.services.RemotingService" messageTypes="flex.messaging.messages.RemotingMessage"> 
+            <destination id="querybrowser"> 
+                <channels> 
+                    <channel ref="querybrowser-service"/> 
+                </channels>
+                <properties> 
+                    <source>*</source> 
+                </properties> 
+            </destination> 
+        </service> 
+    </services> 
+    <channels> 
+        <channel-definition id="querybrowser-service" class="mx.messaging.channels.AMFChannel"> 
+            <endpoint uri="http://showcase.smartcode.ch/php/query-browser-php/" class="flex.messaging.endpoints.AMFEndpoint"/>
+        </channel-definition> 
+    </channels> 
+</services-config> 

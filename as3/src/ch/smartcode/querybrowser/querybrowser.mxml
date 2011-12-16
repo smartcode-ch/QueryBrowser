@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	
+	Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+							  
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	  
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	  
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+	==================================================================================
+
+	Icons provided by Mark James <http://www.famfamfam.com/lab/icons/silk/>
+	Async list update implemetation derived from code posted on the following sites (blogs):
+	
+		James Ward's blog <http://www.jamesward.com/2010/10/11/data-paging-in-flex-4/>
+		Brian Bishop's blog <http://bbishop.org/blog/?p=441>
+	==================================================================================
+
+-->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:context="ch.smartcode.querybrowser.context.*"
+			   xmlns:views="ch.smartcode.querybrowser.views.*"
+			   minWidth="800" minHeight="600" viewSourceURL="srcview/index.html">
+	
+	<fx:Style source="assets/css/style.css"/>
+	
+	<fx:Declarations>
+		<!-- robotlegs -->
+		<context:ApplicationContext contextView="{this}" />
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout gap="0"/>
+	</s:layout>
+	
+	<!-- HEADER -->
+	<views:HeaderView id="header"
+					  width="100%"
+					  height="50" />
+	
+	<!-- MAIN -->
+	<views:MainView id="main" 
+					width="100%" 
+					height="100%"/>
+</s:Application>

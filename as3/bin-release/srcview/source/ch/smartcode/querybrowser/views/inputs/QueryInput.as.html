@@ -1,0 +1,95 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>QueryInput.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">inputs</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptComment">/* 
+    Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;. 
+    */</span>
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">config</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryInputConfig</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ValidateQueryEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">skins</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">inputs</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryInputSkin</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryVO</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlexEvent</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RichEditableText</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TextArea</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TextOperationEvent</span>;
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">QueryInput</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">TextArea</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_queryVO</span>:<span class="ActionScriptDefault_Text">QueryVO</span>;
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">QueryInput</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">focusEnabled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptString">"skinClass"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">QueryInputSkin</span> <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptString">"verticalAlign"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"middle"</span> <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">styleName</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"queryInput"</span>;
+            
+            <span class="ActionScriptDefault_Text">prompt</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">QueryInputConfig</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QUERY_INPUT_PROMPT</span>;
+            
+            <span class="ActionScriptDefault_Text">_queryVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">QueryVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_queryVO</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">type</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">QueryVO</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">COMPLEX</span>;
+            
+            <span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">FlexEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UPDATE_COMPLETE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">updateCompleteHandeler</span> <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">TextOperationEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">textChangeHandler</span> <span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">text</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">text</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">textChangeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">textChangeHandler</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">TextOperationEvent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_queryVO</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">query</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">text</span>;
+            <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ValidateQueryEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ValidateQueryEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">VALIDATE_QUERY</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">_queryVO</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">valid</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptString">"color"</span><span class="ActionScriptOperator">,</span> 0x5684DA <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span> <span class="ActionScriptReserved">else</span> <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptString">"color"</span><span class="ActionScriptOperator">,</span> 0xDF7F48 <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updateCompleteHandeler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">FlexEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">updatedHeight</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">RichEditableText</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">textDisplay</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentHeight</span>;
+            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">updatedHeight</span> <span class="ActionScriptOperator">&gt;</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">minHeight</span> <span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">height</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">updatedHeight</span>;
+            <span class="ActionScriptBracket/Brace">}</span> <span class="ActionScriptReserved">else</span> <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">height</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">minHeight</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

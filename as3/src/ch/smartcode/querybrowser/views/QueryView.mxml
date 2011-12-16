@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  skinClass="ch.smartcode.querybrowser.skins.QuerySkin"
+					  width="100%"
+					  height="100%"
+					  layoutDirection="ltr" 
+					  xmlns:inputs="ch.smartcode.querybrowser.views.inputs.*" 
+					  xmlns:buttons="ch.smartcode.querybrowser.views.buttons.*" 
+					  xmlns:grids="ch.smartcode.querybrowser.views.grids.*" 
+					  xmlns:views="ch.smartcode.querybrowser.views.*" 
+					  xmlns:spinner="ch.smartcode.querybrowser.views.spinner.*" >
+	
+	<fx:Script>
+		<![CDATA[
+			import ch.smartcode.querybrowser.events.KillQueryEvent;
+			import ch.smartcode.querybrowser.events.QueriesListEvent;
+			
+			import flash.filters.BitmapFilterQuality;
+			
+			import mx.collections.ArrayCollection;
+			import mx.core.FlexGlobals;
+			
+
+			[Bindable]
+			private var _loading:Boolean;
+			
+			private var _previousState:String;
+			
+
+			private function killQuery():void
+			{
+				dispatchEvent( new KillQueryEvent( KillQueryEvent.KILL_QUERY ) );
+			}
+
+			private function closeQueriesOpen():void
+			{
+				currentState = _previousState;
+			}
+
+			private function addCloseQueriesHandler():void
+			{
+				FlexGlobals.topLevelApplication.addEventListener( MouseEvent.CLICK, closeQueriesHandler );
+			}
+
+			private function removeCloseQueriesHandler():void
+			{
+				FlexGlobals.topLevelApplication.removeEventListener( MouseEvent.CLICK, closeQueriesHandler );
+			}
+			
+			private function closeQueriesHandler( e:MouseEvent ):void
+			{
+				if( e.target != queriesList && e.target != queriesButton ) {
+					currentState = _previousState;
+				}
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadow"
+							alpha=".5"
+							quality="{BitmapFilterQuality.HIGH}"/>
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="invalid" />
+		<s:State name="loading" enterState="{_loading = true}" exitState="{_loading = false}"/>
+		<s:State name="results" />
+		<s:State name="error" />
+		<s:State name="queriesOpen" enterState="addCloseQueriesHandler()" exitState="removeCloseQueriesHandler()"/>
+		<s:State name="killQuery" />
+	</s:states>
+	<s:layout>
+		<s:VerticalLayout gap="0"
+						  paddingTop="20"
+						  paddingRight="20"
+						  paddingBottom="20"
+						  paddingLeft="0"/>
+	</s:layout>
+	
+	<s:HGroup id="InputArea" 
+			  width="100%"
+			  gap="-1"
+			  paddingTop="0"
+			  paddingBottom="0"
+			  paddingLeft="0"
+			  paddingRight="0"
+			  height="30">
+		
+		<buttons:QueriesListButton id="queriesButton"
+								   label="Queries"
+								   width="70"
+								   height="30" 
+								   click="{_previousState = currentState ; currentState = 'queriesOpen'}"/>
+			
+		<inputs:QueryInput id="queryInput"
+						   verticalAlign="middle"
+						   minHeight="30"
+						   width="100%"
+						   left="70"
+						   right="100" 
+						   enabled="{_loading == false}"/>
+		
+		<s:Group right="0"
+				 height="30"
+				 width="100">
+			<buttons:RunQueryButton id="runQueryButton"
+									enabled="{_loading == false}"
+									width="100"
+									label="Run Query" 
+									iconUp="@Embed(source='ch/smartcode/querybrowser/assets/img/runQuery.png')"
+									right="0"
+									height="30"/>	
+			
+			<!-- Badge Icon to show when the query returned an error -->
+			<mx:Image source="@Embed(source='ch/smartcode/querybrowser/assets/img/error.png')" 
+					  filters="{dropShadow}"
+					  includeIn="error"
+					  right="-7"
+					  top="-7"/>
+			
+			<!-- Badge icon to show when the query seems incomplete -->
+			<mx:Image source="@Embed(source='ch/smartcode/querybrowser/assets/img/attention.png')" 
+					  toolTip="A valid query to get data from a table consists at least of the SELECT keyword followed by the field names and the FROM keyword to specify the table (e.g. SELECT id FROM data)"
+					  filters="{dropShadow}"
+					  includeIn="invalid"
+					  right="-7"
+					  top="-7"/>
+		</s:Group>
+		
+	</s:HGroup>
+	
+	
+	<s:VGroup id="loadGroup"
+			  verticalAlign="middle"
+			  horizontalAlign="center"
+			  width="100%"
+			  height="100%"
+			  gap="10"
+			  includeIn="loading">
+		
+		<spinner:Spinner id="spinner"
+						 size="53"
+						 numTicks="12"
+						 tickWidth="5"
+						 speed="900"
+						 fadeSpeed="700"
+						 tickColor="#333333"/>
+		
+		<mx:LinkButton id="killButton"
+					   label="Kill Query"
+					   label.killQuery="Killing Query ..."
+					   styleName="killButton"
+					   enabled="{currentState != 'killQuery'}"
+					   click="killQuery()" />
+						 
+		
+	</s:VGroup>
+	
+	<s:HGroup id="resultGroup"
+			  includeIn="results"
+			  paddingTop="20"
+			  width="100%"
+			  height="100%">
+		<grids:ResultsDataGrid id="resultsGrid"
+						   width="100%"
+						   height="100%"/>	
+	</s:HGroup>
+	
+	
+	<s:Group id="errorGroup"
+			 width="100%"
+			 includeIn="error">
+		
+		<views:ErrorText id="errorText"
+						 filters="{dropShadow}"
+						 left="69"
+						 right="99"
+						 styleName="errorText"
+						 width="100%"/>
+	</s:Group>
+	
+	<s:Group id="queriesGroup"
+			 includeIn="queriesOpen"
+			 width="100%">
+		
+		<views:QueriesListView id="queriesList"
+						   filters="{dropShadow}"
+						   width="100%"
+						   left="69"
+						   right="99"/>	
+		
+	</s:Group>
+	
+</s:SkinnableContainer>

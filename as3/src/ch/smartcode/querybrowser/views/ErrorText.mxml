@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+
+	Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="100%"
+				   minHeight="14">
+	<fx:Script>
+		<![CDATA[
+			import spark.filters.DropShadowFilter;
+			import flash.filters.BitmapFilterQuality;
+
+			public function set text(value:String):void
+			{
+				infoText.text = value;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	
+	
+	<s:BorderContainer borderColor="#DF1D10"
+					   borderStyle="solid"
+					   borderWeight="1"
+					   backgroundColor="#EE735C"
+					   color="#FFFFFF"
+					   minHeight="14"
+					   width="100%">
+		<s:layout>
+			<s:VerticalLayout gap="5" 
+							  paddingTop="7"
+							  paddingBottom="7"
+							  paddingLeft="7"
+							  paddingRight="7"/>
+		</s:layout>
+		
+		
+		<!-- <s:Label text="ERROR" /> -->
+		
+		<mx:Text id="infoText" color="#FFFFFF" minHeight="14"/>
+		
+	</s:BorderContainer>
+	
+</s:Group>

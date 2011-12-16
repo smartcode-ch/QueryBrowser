@@ -1,0 +1,177 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>style.css</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="CSSComment">/* CSS file */</span>
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">s </span><span class="CSSString">"library://ns.adobe.com/flex/spark"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">mx </span><span class="CSSString">"library://ns.adobe.com/flex/mx"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">input </span><span class="CSSString">"ch.smartcode.querybrowser.views.buttons.*"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">views </span><span class="CSSString">"ch.smartcode.querybrowser.views.*"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">buttons </span><span class="CSSString">"ch.smartcode.querybrowser.views.buttons.*"</span>;
+
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"../fonts/MyriadWebPro.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Myriad</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">advancedAntiAliasing</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"../fonts/MyriadWebProBold.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Myriad</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">advancedAntiAliasing</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"../fonts/MyriadWebPro.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyriadMX</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"../fonts/MyriadWebProBold.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyriadMX</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>  
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">s|global </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-family</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Myriad</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">12px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-grid-fit-type</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">pixel</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-anti-alias-type</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">advanced</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#000000</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSSelector">s|Label, s|RichEditableText, s|HGroup
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-family</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Myriad</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">direction</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ltr</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|ToolTip, mx|Alert, mx|Tree, mx|Text, mx|LinkButton, mx|ToolTip
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-family</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyriadMX</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|VScrollBar </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">downArrowUpSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/downArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowOverSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/downArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowDownSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/downArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowUpSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/upArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowOverSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/upArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDownSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/upArrow.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span> 
+        <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/thumb.png"</span><span class="CSSProperty_Value">,
+        scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">, scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">, 
+        scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">, scaleGridBottom=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span> 
+        <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/thumb.png"</span><span class="CSSProperty_Value">,
+        scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">, scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">, 
+        scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">, scaleGridBottom=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span> 
+        <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/thumb.png"</span><span class="CSSProperty_Value">,
+        scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">, scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">, 
+        scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">, scaleGridBottom=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span> 
+        <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"/ch/smartcode/querybrowser/assets/img/scrolltrack.png"</span><span class="CSSProperty_Value">,
+        scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">, scaleGridTop=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">, 
+        scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">, scaleGridBottom=</span><span class="CSSString">"6"</span> <span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>       
+<span class="CSSDelimiters">}</span> 
+
+<span class="CSSSelector">#tableInfoTree </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">border-style</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">none</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.queryInput </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">14px</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.applicationLabel </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">16</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.menuLabel </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>    
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">14px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">direction</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ltr</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">justification-rule</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">auto</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">justification-style</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">auto</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.killButton </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>    
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">14px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#DF1D10</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">text-roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">text-selected-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.headerLabel </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#707070</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">20px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">direction</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ltr</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|Tree </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#d9dfe6</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selection-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#5684DA</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectionEasingFunction</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">null</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.treeNodeLabel </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">13px</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.treeNodeSubLabel </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">11px</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">buttons|RunQueryButton </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">padding-left</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">5px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">padding-right</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">5px</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.errorText </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">13px</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.queriesListEntry </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">13px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#5684DA</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|ToolTip </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">12px</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundAlpha</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">.8</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundColor</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#000000</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">cornerRadius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">3</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+</pre></body>
+</html>

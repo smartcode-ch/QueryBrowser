@@ -1,0 +1,79 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>QueriesListButtonMediator.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mediators</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptComment">/* 
+    Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;. 
+    */</span>
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">KillQueryEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueriesListEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryBrowserModelEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryErrorEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryRemoteEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryResultEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ValidateQueryEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">models</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueryBrowserModel</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">ch</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">smartcode</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">querybrowser</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">buttons</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QueriesListButton</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">robotlegs</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mvcs</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Mediator</span>;
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">QueriesListButtonMediator</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">Mediator</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">view</span>:<span class="ActionScriptDefault_Text">QueriesListButton</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">model</span>:<span class="ActionScriptDefault_Text">QueryBrowserModel</span>;
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">onRegister</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">addContextListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">QueryBrowserModelEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QUERIES_CHANGED</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">queriesChangedHandler</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">QueryBrowserModelEvent</span> <span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">addContextListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">KillQueryEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">QUERY_KILLED</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">setEnabled</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">KillQueryEvent</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">addContextListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOADING</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">setDisabled</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span> <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">addContextListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOADED</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">setEnabled</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span> <span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">addContextListener</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ERROR</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">setEnabled</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">QueryRemoteEvent</span> <span class="ActionScriptBracket/Brace">)</span>;
+            
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">setDisabled</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">Event</span> <span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">view</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">enabled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">setEnabled</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">Event</span> <span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">view</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">enabled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+        <span class="ActionScriptBracket/Brace">}</span>        
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">queriesChangedHandler</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">QueryBrowserModelEvent</span> <span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">view</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">enabled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">queries</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">&gt;</span> 0;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<s:MXTreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  click="clickHandler()">
+	<fx:Script>
+		<![CDATA[
+			import ch.smartcode.querybrowser.events.TableInfoEvent;
+			
+			override public function set data(value:Object):void
+			{
+				if( value ) {
+					super.data = value;
+					labelField.text = XML(data).@name;
+					
+					if( XML(data).name() == 'field' ) {
+						subLabel.text = XML(data).@type;
+					} else if( XML(data).name() == 'table' ) {
+						subLabel.text = XML(data).@datasets + ' rows';
+					}
+				}
+			}
+			
+			private function clickHandler():void
+			{
+				dispatchEvent( new TableInfoEvent(TableInfoEvent.SET_QUERY,XML(data)) );
+			}
+
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />            
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	<s:HGroup left="0" right="0" top="0" bottom="0" verticalAlign="middle" useHandCursor="true" buttonMode="true">
+		<s:Rect id="indentationSpacer" width="{treeListData.indent}" percentHeight="100" alpha="0">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF" />
+			</s:fill>
+		</s:Rect>
+		<s:Group id="disclosureGroup">
+			<s:BitmapImage source="{treeListData.disclosureIcon}" visible="{treeListData.hasChildren}" />
+		</s:Group>
+		<s:BitmapImage source="{treeListData.icon}" />
+		<s:Label id="labelField" text="{treeListData.label}" paddingTop="2" styleName="treeNodeLabel" color.hovered="#FFFFFF" color.selected="#FFFFFF"/>
+		<mx:Spacer width="100%" />
+		<s:Label id="subLabel" paddingTop="2" paddingRight="8" styleName="treeNodeSubLabel" color.hovered="#FFFFFF" color.selected="#FFFFFF"/>
+	</s:HGroup>
+</s:MXTreeItemRenderer>

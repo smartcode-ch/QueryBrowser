@@ -1,0 +1,166 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace input "ch.smartcode.querybrowser.views.buttons.*";
+@namespace views "ch.smartcode.querybrowser.views.*";
+@namespace buttons "ch.smartcode.querybrowser.views.buttons.*";
+
+@font-face { 
+	src: url("../fonts/MyriadWebPro.ttf"); 
+	fontFamily: Myriad; 
+	fontWeight: normal; 
+	embedAsCFF: true;
+	advancedAntiAliasing: true; 
+}
+
+@font-face { 
+	src: url("../fonts/MyriadWebProBold.ttf"); 
+	fontFamily: Myriad; 
+	fontWeight: bold; 
+	embedAsCFF: true; 
+	advancedAntiAliasing: true; 
+}
+
+@font-face { 
+	src: url("../fonts/MyriadWebPro.ttf"); 
+	fontFamily: MyriadMX; 
+	fontWeight: normal; 
+	embedAsCFF: false; 
+}
+
+@font-face { 
+	src: url("../fonts/MyriadWebProBold.ttf"); 
+	fontFamily: MyriadMX; 
+	fontWeight: bold; 
+	embedAsCFF: false;  
+}
+
+s|global {
+	font-family: Myriad;
+	font-size: 12px;
+	font-grid-fit-type: pixel;
+	font-weight: normal;
+	font-anti-alias-type: advanced;
+	color: #000000;
+}
+
+
+s|Label, s|RichEditableText, s|HGroup
+{
+	font-family: Myriad;
+	direction: ltr;
+}
+
+mx|ToolTip, mx|Alert, mx|Tree, mx|Text, mx|LinkButton, mx|ToolTip
+{
+	font-family: MyriadMX;
+}
+
+mx|VScrollBar {
+	downArrowUpSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/downArrow.png");
+	downArrowOverSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/downArrow.png");
+	downArrowDownSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/downArrow.png");
+	upArrowUpSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/upArrow.png");
+	upArrowOverSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/upArrow.png");
+	upArrowDownSkin: Embed(source="/ch/smartcode/querybrowser/assets/img/upArrow.png");
+	thumbDownSkin: 
+		Embed(source="/ch/smartcode/querybrowser/assets/img/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", 
+		scaleGridRight="8", scaleGridBottom="7");
+	
+	thumbUpSkin: 
+		Embed(source="/ch/smartcode/querybrowser/assets/img/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", 
+		scaleGridRight="8", scaleGridBottom="7");
+	
+	thumbOverSkin: 
+		Embed(source="/ch/smartcode/querybrowser/assets/img/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", 
+		scaleGridRight="8", scaleGridBottom="7");
+	
+	trackSkin: 
+		Embed(source="/ch/smartcode/querybrowser/assets/img/scrolltrack.png",
+		scaleGridLeft="7", scaleGridTop="4", 
+		scaleGridRight="8", scaleGridBottom="6" );       
+} 
+
+#tableInfoTree {
+	border-style:none;
+}
+
+.queryInput {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.applicationLabel {
+	color: #333333;
+	font-weight: bold;
+	font-size: 16;
+}
+
+.menuLabel {
+	color: #333333;	
+	font-weight: bold;
+	font-size: 14px;
+	direction: ltr;
+	justification-rule:auto;
+	justification-style:auto;
+}
+
+.killButton {
+	color: #333333;	
+	font-weight: bold;
+	font-size: 14px;
+	roll-over-color: #DF1D10;
+	text-roll-over-color: #FFFFFF;
+	text-selected-color: #FFFFFF;
+}
+
+.headerLabel {
+	color: #707070;
+	font-size: 20px;
+	font-weight: bold;
+	direction: ltr;
+}
+
+mx|Tree {
+	roll-over-color: #d9dfe6;
+	selection-color: #5684DA;
+	selectionEasingFunction: null;
+}
+
+.treeNodeLabel {
+	font-size: 13px;
+}
+
+.treeNodeSubLabel {
+	font-size: 11px;
+}
+
+buttons|RunQueryButton {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.errorText {
+	font-weight:bold;
+	font-size: 13px;
+}
+
+.queriesListEntry {
+	font-size: 13px;
+	font-weight: bold;
+	color: #5684DA;
+}
+
+mx|ToolTip {
+	font-size: 12px;
+	backgroundAlpha: .8;
+	backgroundColor: #000000;
+	color: #FFFFFF;
+	cornerRadius: 3;
+}
+
+
+

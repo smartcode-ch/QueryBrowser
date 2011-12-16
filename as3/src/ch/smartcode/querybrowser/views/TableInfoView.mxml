@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Copyright (C) 2011  Rico Leuthold // rico.leuthold@smartcode.ch
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  skinClass="ch.smartcode.querybrowser.skins.TableInfoSkin"
+					  layoutDirection="ltr">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.events.ListEvent;
+			
+			[Bindable]
+			private var _tableInfo:XML;
+			
+			[Bindable]
+			[Embed(source="ch/smartcode/querybrowser/assets/img/table.png")] 
+			public var tableNodeIcon:Class; 
+			
+			[Bindable]
+			[Embed(source="ch/smartcode/querybrowser/assets/img/field.png")] 
+			public var fieldNodeIcon:Class;
+			
+			[Bindable]
+			[Embed(source="ch/smartcode/querybrowser/assets/img/key_field.png")] 
+			public var keyFieldNodeIcon:Class;
+			
+
+			public function set tableInfo(value:XML):void
+			{
+				_tableInfo = value;
+				dbLabel.text = "Tables of database " + _tableInfo.@db;
+			}
+			
+			public function get tableInfo():XML
+			{
+				return _tableInfo;
+			}
+
+			private function treeNodeIconFunction( item:XML ):Class
+			{
+				if( item.name()  == 'table' ) {
+					return tableNodeIcon;
+				} else if( item.name() == 'field') {
+					if( item.@key == "PRI" ) {
+						return keyFieldNodeIcon;
+					} else {
+						return fieldNodeIcon;
+					}
+				}
+				
+				return fieldNodeIcon;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout gap="10" 
+						  paddingTop="10"
+						  paddingRight="10"
+						  paddingBottom="10"
+						  paddingLeft="10"/>
+	</s:layout>
+	
+	<s:Label id="dbLabel" text="Tables" styleName="menuLabel" />
+	
+	<mx:Tree id="tableInfoTree"
+			 dataProvider="{_tableInfo}"
+			 labelField="@name"
+			 showRoot="false"
+			 iconFunction="treeNodeIconFunction"
+			 itemRenderer="ch.smartcode.querybrowser.renderers.TreeNodeItemRenderer"
+			 width="100%"
+			 height="100%">
+		
+	</mx:Tree>
+</s:SkinnableContainer>
