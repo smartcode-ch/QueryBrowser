@@ -77,8 +77,8 @@ There is an optional configuration parameter found in class `ch.tofuse.querybrow
 
 ### More
 
-- [Visit the blog post](http://blog.to-fuse.ch/software-development/flex-4-5-mysql-query-browser/)  
-- Check out the [demo](http://showcase.to-fuse.ch/query-browser/).
+- [Visit the blog post](http://www.smartcode.ch/blog/flex/flex-4-5-mysql-query-browser/)  
+- Check out the [demo](http://showcase.smartcode.ch/query-browser/).
 
 
 
